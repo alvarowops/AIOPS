@@ -1,0 +1,22 @@
+apiVersion: 1
+datasources:
+  - id: 5
+    uid: "edmcipqovpn28e"
+    orgId: 1
+    name: "yesoreyeram-infinity-datasource-1"
+    type: "yesoreyeram-infinity-datasource"
+    url: "http://ai-service:5000"
+    basicAuth: false
+    basicAuthUser: ""
+    isDefault: false
+    jsonData:
+      auth_method: "none"
+      customHealthCheckEnabled: true
+      customHealthCheckUrl: "http://ai-service:5000/health"
+      global_queries: []
+      oauthPassThru: false
+      proxy_type: "url"
+      proxy_url: "http://ai-service:5000/predict"
+      unsecuredQueryHandling: "allow"
+    readOnly: false
+

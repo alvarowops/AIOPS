@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: ai-cronjob
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: curl
+            image: curlimages/curl
+            args:
+            - -X
+            - POST
+            - http://ai-service:5000/predict
+            - -H
+            - "Content-Type: application/json"
+            - -d
+            - '[{"feature1": 5, "feature2": 5}]'
+          restartPolicy: OnFailure

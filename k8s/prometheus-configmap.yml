@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 15s
+    scrape_configs:
+      - job_name: 'prometheus'
+        static_configs:
+          - targets: ['localhost:9090']
+      - job_name: 'nginx'
+        static_configs:
+          - targets: ['nginx-exporter:9113']
+    alerting:
+      alertmanagers:
+        - static_configs:
+            - targets: ['localhost:9093']
+    rule_files:
+      - "/etc/prometheus/alert.rules.yml"
+
+  alert.rules.yml: |
+    groups:
+      - name: example
+        rules:
+        - alert: NGINX_Anomaly
+          expr: rate(nginx_http_requests_total[1m]) > 100
+          for: 1m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Anomalía detectada en NGINX"
+            description: "NGINX ha recibido más de 100 solicitudes por segundo en el último minuto."
+

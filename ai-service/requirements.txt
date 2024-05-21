@@ -1,0 +1,5 @@
+flask>=2.0.0
+scikit-learn
+pandas
+joblib
+prometheus_flask_exporter
