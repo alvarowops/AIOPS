@@ -258,21 +258,27 @@ spec:
     targetPort: 5000
 ```
 ### 5. Configurar Grafana
-####Agregar el servicio de IA como una fuente de datos en Grafana y crear un panel para visualizar las predicciones.
+###Agregar el servicio de IA como una fuente de datos en Grafana y crear un panel para visualizar las predicciones.
 
 ### Ir a Grafana -> Configuration -> Data Sources.
 ### Agregar una nueva fuente de datos con los siguientes detalles:
-Tipo: JSON API
-URL: http://ai-service:5000
-Acceso: Server (default)
-Crear un nuevo panel y configurar la consulta para usar la fuente de datos JSON API con la solicitud POST adecuada a /predict.
-6. Configurar Alertas
+
+1. **Tipo:** JSON API
+2. **URL:** `http://ai-service:5000`
+3. **Acceso:** Server (default)
+
+### Crear un nuevo panel y configurar la consulta
+
+1. Usar la fuente de datos JSON API con la solicitud POST adecuada a `/predict`.
+
+### Configurar Alertas
+
 Configurar alertas en Grafana para notificar cuando se detecten anomalías:
 
-Crear una regla de alerta en el panel con los datos de predicción.
-Establecer la condición de alerta para que se active cuando la predicción contenga -1.
-Configurar los canales de notificación (correo electrónico, Slack, etc.) para las alertas.
-Conclusión
-Esta configuración demuestra cómo monitorear el tráfico web utilizando Prometheus y Grafana, y mejorar la observabilidad con detección de anomalías basada en IA. El servicio de IA predice anomalías basándose en los datos de entrada y los resultados se visualizan en Grafana, ayudando a identificar y responder rápidamente a patrones inusuales en el tráfico web.
+1. Crear una regla de alerta en el panel con los datos de predicción.
+2. Establecer la condición de alerta para que se active cuando la predicción contenga `-1`.
+3. Configurar los canales de notificación (correo electrónico, Slack, etc.) para las alertas.
 
-Para más detalles, consulta el repositorio y sigue los pasos para replicar la configuración en tu entorno.
+### Conclusión
+
+Esta configuración demuestra cómo monitorear el tráfico web utilizando Prometheus y Grafana, y mejorar la observabilidad con detección de anomalías basada en IA. El servicio de IA predice anomalías basándose en los datos de entrada y los resultados se visualizan en Grafana, ayudando a identificar y responder rápidamente a patrones inusuales en el tráfico web.
