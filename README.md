@@ -63,8 +63,7 @@ spec:
     targetPort: 80
 ### Desplegar el exportador de NGINX para recopilar métricas:
 
-yaml
-Copy code
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -101,8 +100,7 @@ spec:
 ### 2. Desplegar Prometheus
 ### Crear un ConfigMap para la configuración de Prometheus:
 
-yaml
-Copy code
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -120,8 +118,7 @@ data:
           - targets: ['nginx-exporter:9113']
 Desplegar Prometheus utilizando el ConfigMap:
 
-yaml
-Copy code
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -165,7 +162,7 @@ spec:
 ### 3. Desplegar Grafana
 #### Crear un despliegue para Grafana:
 
-yaml
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -208,7 +205,7 @@ spec:
 ### 4. Desplegar el Servicio de IA
 #### Crear un Dockerfile para el servicio de IA:
 
-dockerfile
+```dockerfile
 FROM python:3.8-slim
 
 WORKDIR /app
@@ -221,7 +218,7 @@ COPY . .
 CMD ["python", "app.py"]
 ### Crear un despliegue para el servicio de IA:
 
-yaml
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
