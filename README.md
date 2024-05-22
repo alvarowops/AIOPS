@@ -60,7 +60,7 @@ spec:
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 80
+    targetPort: 80```
 ### Desplegar el exportador de NGINX para recopilar métricas:
 
 ```yaml
