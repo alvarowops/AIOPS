@@ -60,7 +60,7 @@ spec:
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 80```
+    targetPort: 80
 ```
 ### Desplegar el exportador de NGINX para recopilar métricas:
 
@@ -98,6 +98,7 @@ spec:
   - protocol: TCP
     port: 9113
     targetPort: 9113
+```
 ### 2. Desplegar Prometheus
 ### Crear un ConfigMap para la configuración de Prometheus:
 
@@ -117,6 +118,7 @@ data:
       - job_name: 'nginx'
         static_configs:
           - targets: ['nginx-exporter:9113']
+```
 Desplegar Prometheus utilizando el ConfigMap:
 
 ```yaml
@@ -160,6 +162,7 @@ spec:
     port: 9090
     targetPort: 9090
     nodePort: 30900
+```
 ### 3. Desplegar Grafana
 #### Crear un despliegue para Grafana:
 
@@ -203,6 +206,7 @@ spec:
     port: 3000
     targetPort: 3000
     nodePort: 32000
+```
 ### 4. Desplegar el Servicio de IA
 #### Crear un Dockerfile para el servicio de IA:
 
@@ -217,6 +221,7 @@ RUN pip install -r requirements.txt
 COPY . .
 
 CMD ["python", "app.py"]
+```
 ### Crear un despliegue para el servicio de IA:
 
 ```yaml
@@ -251,6 +256,7 @@ spec:
   - protocol: TCP
     port: 5000
     targetPort: 5000
+```
 ### 5. Configurar Grafana
 ####Agregar el servicio de IA como una fuente de datos en Grafana y crear un panel para visualizar las predicciones.
 
